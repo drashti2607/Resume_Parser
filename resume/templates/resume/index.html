@@ -1,0 +1,101 @@
+{% extends 'resume/basic.html' %}
+
+<!-- {% block css %}
+  <style>
+.abc ::before {
+content: "";
+background:
+url("https://images.unsplash.com/photo-1543269865-0a740d43b90c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")
+no-repeat center center/cover;
+position: absolute;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+z-index: -1;
+opacity: 0.1;
+filter: brightness(40%);
+}
+
+.abc{
+color: black;
+}
+</style>
+{% endblock%} -->
+
+{% block body %}
+<div class="container p-5 my-5 col-md-6 col-12 border rounded shadow mb-5 bg-white">
+  <h3 style="text-align: center">Enter Your Details</h3>
+
+  <form action="/resume/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" required class="form-control" id="name" name="name" placeholder="Enter Your Name" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" required class="form-control" id="email" name="email" placeholder="Enter Your Email" />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="tel" required class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number" />
+    </div>
+
+    <div class="form-group">
+      <label for="experience">Experience(in years)(if any)</label>
+      <input type="number" required class="form-control" id="experience" name="experience"
+        placeholder="Enter your experience (if any)" />
+    </div>
+
+    <div class="form-group">
+      <label for="interest">Select your field of interest</label>
+
+      <select class="p-1 ml-3" id="interest" name="interest">
+        <option class="border-bottom">
+          <a href="#" class="text-decoration-none text-secondary">Machine Learning</a>
+        </option>
+        <option class="border-bottom">
+          <a href="#" class="text-decoration-none text-secondary">Deep Learning</a>
+        </option>
+        <option class="border-bottom">
+          <a href="#" class="text-decoration-none text-secondary">Natural Language Processing</a>
+        </option>
+        <option class="border-bottom">
+          <a href="#" class="text-decoration-none text-secondary">Front End</a>
+        </option>
+        <option class="border-bottom">
+          <a href="#" class="text-decoration-none text-secondary">Back End</a>
+        </option>
+        <option class="border-bottom">
+          <a href="#" class="text-decoration-none text-secondary">Data analytics</a>
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="customfile">Upload your Resume </label>
+      <input type="file" required class="form-control" id="customfile" name="customfile" />
+    </div>
+
+    <div class="row justify-content-center form-group">
+      <button type="submit" class="btn btn-success mt-4 text-center" style="width: 140px; height: 40px">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %} {% block js %}
+<script>
+  $(function () {
+    $(".dropdown-menu").on("click", "li a", function () {
+      $(".dropdownbtn:first-child").text($(this).text());
+      $(".dropdownbtn:first-child").val($(this).text());
+    });
+  });
+</script>
+{% endblock %}

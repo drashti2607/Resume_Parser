@@ -1,0 +1,46 @@
+{% include 'recruiter/basic.html' %}
+
+{% block css %}
+<style>
+  .textReply {
+    outline: none;
+    border: none;
+    text-decoration: none;
+    border-radius: none;
+    border-bottom: 1px solid gray;
+  }
+
+  .card-header {
+    background-color: white;
+  }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  {% for contact in contacts %}
+  <div class="card w-50 mx-auto my-3">
+    <div class="card-header">
+      {{contact.desc}}
+    </div>
+    <div class="card-body">
+      <form action="/recruiter/response/{{contact.msg_id}}" method="post" enctype="multipart/form-data" class="">
+        {% csrf_token %}
+        <div class="form-group">
+          <textarea class="form-control textReply" id="exampleFormControlTextarea1" name="reply" rows="1"
+            placeholder="Send Your Reply..."></textarea>
+        </div>
+        <div class="row d-flex flex-row-reverse form-group">
+          <button type="submit" class="btn btn-primary mt-1 mr-3 text-center" style="width: 140px; height: 40px">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
